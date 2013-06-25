@@ -1,6 +1,6 @@
 <?php
 	include_once ('app/dbconfig.php');
-	$connect = mysql_connect($hostSQL, $uzytkownikSQL, $hasloUzytkownika); 
+	$connect = mysql_connect($hostSQL, $userSQL, $passSQL); 
 	$podlaczDoBazy = mysql_select_db('rails', $connect);
 	if($podlaczDoBazy){
 		if ($handle = opendir('app/migrations/')) {

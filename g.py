@@ -67,17 +67,17 @@ def main():
             print "folder with that name of model already exist!"
         textModel = "<?php\n\ninclude_once ('app/model/model.php');\n\nclass M" + name + " extends Model{\n"
 
-        textModel += "\n\tfunction __construct("
-        i = False
-        for arg in sys.argv[4:]:
+        textModel += "\n\tfunction __construct($id,$action,$param){\n\n"
 
+        for arg in sys.argv[4:]:
             datas = arg.split(':')
-            if i == False:
-                textModel += "$" + datas[0]
-                i = True
-            else:
-                textModel += ",$" + datas[0]
-        textModel += "){\n\n"
+            textModel +=  "\t\t$" + datas[0] + " = null;\n\n"
+
+        for arg in sys.argv[4:]:
+            datas = arg.split(':')
+            textModel +=  "\t\tif(isset($_POST['" + datas[0] + "']))\n"
+            textModel +=  "\t\t\t$" + datas[0] + " = is_numeric($_POST['" + datas[0] + "'])?(int)$_POST['" + datas[0] + "']:$_POST['" + datas[0] + "'];\n\n"
+
         textModel += "\t\t$fields = array("
         i = False
         for arg in sys.argv[4:]:
@@ -87,7 +87,8 @@ def main():
                 i = True
             else:
                 textModel +=  ",\"" + datas[0] + "\"" + " => $" + datas[0]
-        textModel += ");\n\t\tparent::__construct('T"+name+"',$fields);\n\t}\n}"
+
+        textModel += ");\n\n\t\tparent::__construct('T"+name+"',$fields, $action, $id, $param);\n\t}\n}"
         fileModel = open('app/model/' + name + '/' + name +'.php', 'w')
         fileModel.write(textModel)
 
@@ -95,7 +96,7 @@ def main():
 
         i = 0
         textMigrations = "<?php\n"
-        textMigrations += "\t$create = mysql_query('CREATE TABLE T" + name + " ("+ name +"_ID int NOT NULL AUTO_INCREMENT, PRIMARY KEY("+ name +"_ID)"
+        textMigrations += "\t$create = mysql_query('CREATE TABLE T" + name + " (ID int NOT NULL AUTO_INCREMENT, PRIMARY KEY(ID)"
         for arg in sys.argv[4:]:
             datas = arg.split(':')
             textMigrations += ","
@@ -191,20 +192,6 @@ def main():
 
             textController += "\n\n\t\t$this->model = new M"+name+"($id, $action, $param);"
 
-            if s == True:
-                textController +="\n\n\t\tif($action == 'show')\n\t\t\t $this->content = $this->model->show($name, $id);"
-
-            if l == True:
-                textController +="\n\n\t\tif($action == 'list')\n\t\t\t $this->content = $this->model->slist($name, $id, $param);"
-
-            if n == True:
-                textController +="\n\n\t\tif($action == 'new')\n\t\t\t $this->model->add($name);"
-
-            if d == True:
-                textController +="\n\n\t\tif($action == 'del')\n\t\t\t $this->model->del($name, $id);"
-
-            if e == True:
-                textController +="\n\n\t\tif($action == 'edit')\n\t\t\t $model->edit($name, $id);"
 
         textController += "\n\n\t\tparent::__construct($name, $action, $id, $param);"
         textController += "\n\t}\n}\n$controller = new C"+name+"($name, $action, $id, $param);"
