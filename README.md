@@ -55,6 +55,8 @@ W ten sposob dokonana zostanie migracja tabel do bazy danych - przed migracja wa
 
 8) wszystkie powstale pliki dla modeli, widokow, kontrolerow umieszczone sa w stosownych katalogach
 
+9) wywolania www.nazwadomeny.com/name/show/id  www.nazwadomeny.com/name/edit/id  www.nazwadomeny.com/name/del/id
+
 =========================================================================================================
 
 Uwaga: Aktualna wersja Framewroka jest w fazie poczatkowej i nie przeznaczona do celow produkcyjnych.
