@@ -153,7 +153,7 @@ def main():
             for arg in sys.argv[4:]:
                 datas = arg.split(':')
                 textEdit +="\t<p><label for='" + datas[0] + "'>" + datas[0] + "</label>\n"
-                textEdit +="\t<input type='text' name='" + datas[0] + "'></p>\n\n"
+                textEdit +="\t<input type='text' name='" + datas[0] + "' value=\".$model->get(\'"+ datas[0] +"\').\"></p>\n\n"
 
             textEdit += "\t<p><input type='submit' value='Save' /></p>\n\n"
             textEdit += "</form>\n\";"
@@ -162,7 +162,17 @@ def main():
             fileEdit.close()
 
         if s == True:
-            textShow = "<?php\n$content=\"\n<h2>Item description</h2> \n\n <%= item %>\n\";"
+            textShow = "<?php\n$content=\"\n<h2>Item description</h2> \n\n<table>\n"
+
+            for arg in sys.argv[4:]:
+                datas = arg.split(':')
+                textShow += '\t<tr><td> '+ datas[0] +'</td><td> ".$model->get(\''+ datas[0] +'\')."</td></tr>\n'
+            textShow += '</table>\n'
+
+            textShow += '<a href=\'/'+name+'/edit/".$model->get(\'id\')."\'>Edit</a><br />\n'
+            textShow += '<a href=\'/'+name+'/del/".$model->get(\'id\')."\'>Delete</a>'
+
+            textShow += '";'
             fileShow = open('app/view/' + name + '/show.php', 'w')
             fileShow.write(textShow)
             fileShow.close()
