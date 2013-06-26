@@ -26,8 +26,12 @@
 				$this->show($id);
 			if($action == 'new' && !empty($_POST))
 				$this->add();
-			if($action == 'edit' && !empty($_POST))
-				$this->edit($id);
+			if($action == 'edit' ){
+				
+				if(!empty($_POST))
+					$this->edit($id);
+				$this->show($id);
+			}
 			if($action == 'del'){
 				$this->del($id);
 				header("Location: /index.php");//to do
