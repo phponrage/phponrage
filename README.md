@@ -1,11 +1,7 @@
+Prace nad frameworkiem wstrzymane ze względu na odkrycie YII framework :-)
+Poniższa wersja dziala, jednak wymaga jeszcze dużo pracy.
+
 PHP on RAGE
-
-=====================
-
-PHP framework like Ruby on Rails ver 0.4
-Apache license v2.0
-
-Copyright Marcin Boryczko - Alpha Solutions
 
 =====================
 
@@ -17,9 +13,6 @@ WiP
 
 Instrukcja obsugi - PL
 
-Framework 'PHP on RAGE' jest tworzony z mysla o wygodzie pracy developera jezyka PHP.
-Jego celem jest zapewnienie szybkosci tworzenia aplikaji webowych z lini komend terminala/konsoli,
-która docelowo ma być analogia do Ruby on Rails.
 
 Framework jest oparty o wzorzec projektowy MVC, natomiast odpowiednikiem generatora z rails jest plik
 g.py odpowiadajacy za tworzenie controllerow, widokow, modeli z migracjami, badz calosciowo(czyli scaffolding).
