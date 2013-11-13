@@ -50,15 +50,3 @@ W ten sposob dokonana zostanie migracja tabel do bazy danych - przed migracja wa
 
 9) wywolania www.nazwadomeny.com/name/show/id  www.nazwadomeny.com/name/edit/id  www.nazwadomeny.com/name/del/id
 
-=========================================================================================================
-
-Uwaga: Aktualna wersja Framewroka jest w fazie poczatkowej i nie przeznaczona do celow produkcyjnych.
-
-=========================================================================================================
-
-    Serdecznie zapraszam do wspolpracy nad Frameworkiem osoby znajace w stopniu zaawansowanym zagadnienia:
-    OOP PHP, MVC, SQL, oraz SQL injection.
-    Mile widziane osoby ze znajomoscia Rails, Python.
-    
-    Liczba wolnych miejsc 2.
-
